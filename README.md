@@ -45,8 +45,17 @@ response.build_response
 
 Will generate a valid outputspeech response in JSON format:
 
-``` JSON
-$ {"version":"1.0","response":{"outputSpeech":{"type":"PlainText","text":"Ruby is running ready!"},"shouldEndSession":true}}
+```JSON
+{
+    "version": "1.0",
+    "response": {
+        "outputSpeech": {
+            "type": "PlainText",
+            "text": "Ruby is running ready!"
+        },
+        "shouldEndSession": true
+    }
+}
 ```
 
 ## Troubleshooting
@@ -55,6 +64,14 @@ There are two sources of troubleshooting information: the Amazon Echo app/websit
 the management console.
 - "Error in SSL handshake" : Make sure your used the FQDN when you generated the SSL and it's also the active SSL in EBS.
 - "Error communicating with the application" : Query the EBS logs from the management console and create an issue on GitHub.
+
+## Testing
+
+Run the tests using
+
+```bash
+bundle exec rake
+```
 
 ## Contributing
 
