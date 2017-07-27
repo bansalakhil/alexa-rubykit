@@ -6,19 +6,25 @@ module AlexaRubykit
   class Request
     require 'json'
     require 'alexa_rubykit/session'
-    attr_accessor :version, :type, :session, :json # global
+    attr_accessor :version, :type, :session, :json, :json_mash # global
     attr_accessor :request_id, :locale # on request
 
     def initialize(json_request)
       @request_id = json_request['request']['requestId']
       raise ArgumentError, 'Request ID should exist on all Requests' if @request_id.nil?
-      @version = json_request['version']
-      @locale = json_request['request']['locale']
-      @json   = json_request
+      @version    = json_request['version']
+      @locale     = json_request['request']['locale']
+      @json       = json_request
+      @json_mash  = Hashie::Mash.new(@json)
 
       # TODO: We probably need better session handling.
       @session = AlexaRubykit::Session.new(json_request['session'])
     end
+
+    def application_id
+      json_mash.session.application.applicationId rescue nil
+    end
+
   end
 
   # Builds a new request for Alexa.

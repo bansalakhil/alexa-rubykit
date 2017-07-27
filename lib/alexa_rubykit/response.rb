@@ -6,7 +6,7 @@ module AlexaRubykit
     require 'alexa_rubykit/response/dialog'
 
     attr_accessor :version, :session, :response_object, :session_attributes,
-                  :speech, :reprompt, :response, :card, :intents, :request
+                  :speech, :reprompt, :response, :card, :intents, :request, :should_end_session
 
     # Every response needs a shouldendsession and a version attribute
     # We initialize version to 1.0, use add_version to set your own.
@@ -14,8 +14,9 @@ module AlexaRubykit
       @session_attributes = Hash.new
       @version = version
       @request = request
-      @intents = request.intent if request && request.type == "INTENT_REQUEST"
+      @intents = request.intent if request && request.type == "IntentRequest"
       @directives = []
+      @should_end_session = true
     end
 
     # Adds a key,value pair to the session object.

@@ -4,7 +4,7 @@ module AlexaRubykit
     # Checking for the presence of intent on an IntentRequest.
     def initialize(json_request)
       super
-      @type = 'LAUNCH_REQUEST'
+      @type = 'LaunchRequest'
     end
 
     # Outputs the launch requestID.

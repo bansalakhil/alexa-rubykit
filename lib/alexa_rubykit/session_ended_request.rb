@@ -8,7 +8,7 @@ module AlexaRubykit
     # Checking for the presence of intent on an IntentRequest.
     def initialize(json_request)
       super
-      @type = 'SESSION_ENDED_REQUEST'
+      @type = 'SessionEndedRequest'
       @reason = json_request['request']['reason']
     end
 
