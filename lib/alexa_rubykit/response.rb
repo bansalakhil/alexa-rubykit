@@ -25,6 +25,7 @@ module AlexaRubykit
     end
 
     def add_speech(speech_text, ssml = false)
+      speech_text = speech_text.to_s.squeeze(' ')
       if ssml
         @speech = { :type => 'SSML', :ssml => check_ssml(speech_text) }
       else
@@ -32,7 +33,7 @@ module AlexaRubykit
       end
       @speech
     end
-    
+
     def add_audio_url(url, token='', offset=0)
       @directives << {
         'type' => 'AudioPlayer.Play',
@@ -71,6 +72,7 @@ module AlexaRubykit
     end
 
     def add_reprompt(speech_text, ssml = false)
+      speech_text = speech_text.to_s.squeeze(' ')
       if ssml
         @reprompt = { "outputSpeech" => { :type => 'SSML', :ssml => check_ssml(speech_text) } }
       else
